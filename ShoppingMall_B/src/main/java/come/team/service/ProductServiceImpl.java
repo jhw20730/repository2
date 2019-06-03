@@ -38,5 +38,27 @@ public class ProductServiceImpl implements ProductService {
 	public void register(ProductVO vo) {
 		mapper.insertProduct(vo);
 	}
+	
+	@Override
+	public List<ProductVO> findByKeyword(Criteria criteria) {
+		return mapper.findByKeyword(criteria);
+	}
+
+	@Override
+	public ProductVO findOneWithProductCode(String productCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public int update(ProductVO vo) {
+		return mapper.update(vo);
+	}
+	
+	@Override
+	public int delete(String productCode) {
+		return mapper.delete(productCode);
+	}
+
 
 }
