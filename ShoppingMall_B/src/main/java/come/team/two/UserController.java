@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/user")
 @Log4j
 @AllArgsConstructor
 public class UserController {

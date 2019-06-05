@@ -14,58 +14,55 @@
 			<!-- section-title -->
 			<div class="col-md-12">
 				<div class="section-title">
-					<h2 class="title">PRODUCT REGISTER</h2>
+					<h2 class="title">PRODUCT UPDATE</h2>
 				</div>
 			</div>
 			<!-- /section-title -->
 
-			<form role="form" action="/product/register" method="post">
+			<form role="form" action="/admin/updateCheck" method="get">
 					<div class="form-group">
-						<label>상품 코드</label>
-						<input class="form-control" name='productCode'>
+						<label>상품코드</label>
+						<input class="form-control" name='productCode' value='${board.productCode }' readonly="readonly">
 					</div>
 					
 					<div class="form-group">
-						<label>상품 종류</label>
-						<input class="form-control" name='productType'>
-					</div>
-					
-					<div class="form-group">
-						<label>제품 이름</label>
-						<input class="form-control" name='productName'>
+						<label>상품이름</label>
+						<input class="form-control" name='productName' value='${board.productName }'>
 					</div>
 					
 					<div class="form-group">
 						<label>제조사</label>
-						<input class="form-control" name='manufacturer'>
+						<input class="form-control" name='manufacturer' value='${board.manufacturer }'>
 					</div>
 					
 					<div class="form-group">
 						<label>가격</label>
-						<input class="form-control" name='price'>
+						<input class="form-control" name='price' value='${board.price }'>
 					</div>
 					
 					<div class="form-group">
-						<label>상품 설명</label>
-						<textarea class="form-control" rows="3" name='description'></textarea>
+						<label>설명</label>
+						<input class="form-control" name='description' value='${board.description }'>
 					</div>
 					
 					<div class="form-group">
 						<label>운영체제</label>
-						<input class="form-control" name='os'>
+						<input class="form-control" name='os' value='${board.os }'>
 					</div>
-					
+					<div class="form-group">
+						<label>상품종류</label>
+						<input class="form-control" name='productType' value='${board.productType }'>
+					</div>
 					<div class="form-group">
 						<label>재고</label>
-						<input class="form-control" name='stock'>
+						<input class="form-control" name='stock' value='${board.stock }'>
 					</div>
-					
 					<div class="form-group">
-						<label>사용용도</label>
-						<input class="form-control" name='usability'>
+						<label>용도</label>
+						<input class="form-control" name='usability' value='${board.usability }'>
 					</div>
 
-					<button type="submit" class="btn btn-default">등록</button>
+					<button type="submit" class="btn btn-default">수정</button>
 					<button type="reset" class="btn btn-default">RESET</button>
 				</form>
 

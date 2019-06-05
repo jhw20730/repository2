@@ -39,4 +39,20 @@ public class ProductServiceImpl implements ProductService {
 		mapper.insertProduct(vo);
 	}
 
+	@Override
+	public void delete(String productCode) {
+		log.info("we reached product service");
+		mapper.delete(productCode);
+		log.info("we'll leave product service");
+		
+	}
+
+	@Override
+	public void update(ProductVO vo) {
+		log.info("we reached product service");
+		mapper.update(vo);
+		log.info("we'll leave product service");
+		
+	}
+
 }

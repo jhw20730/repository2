@@ -57,6 +57,21 @@
 	      PRODUCTTYPE, STOCK, USABILITY)
 	    values(#{productCode}, #{productName}, #{manufacturer}, #{price}, #{description}, #{os}, #{productType}, #{stock}, #{usability})  
 	</insert>
+	
+	<delete id="delete">
+		delete
+		from TBL_PRODUCT
+		where PRODUCTCODE =
+		#{productCode}
+	</delete>
 
+	<update id="update">
+		update TBL_PRODUCT
+		set PRODUCTNAME=#{productName},
+		MANUFACTURER=#{manufacturer}, PRICE=#{price},
+		DESCRIPTION=#{description}, OS=#{os}, PRODUCTTYPE=#{productType},
+		STOCK=#{stock}, USABILITY=#{usability}
+		where PRODUCTCODE=#{productCode}
+	</update>
 
 </mapper>
