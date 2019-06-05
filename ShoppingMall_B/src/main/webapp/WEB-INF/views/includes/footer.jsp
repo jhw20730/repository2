@@ -29,7 +29,7 @@
 					<div class="footer">
 						<h3 class="footer-header">My Account</h3>
 						<ul class="list-links">
-							<li><a href="#">My Account</a></li> <!-- 회원 정보 조회 -->
+							<li><a href="/aboutUs">My Account</a></li> <!-- 회원 정보 조회 -->
 							<li><a href="#">My Cart</a></li> <!--  장바구니 -->
 							<li><a href="#">Login</a></li> <!-- 로그인 -->
 						</ul>
@@ -44,7 +44,7 @@
 					<div class="footer">
 						<h3 class="footer-header">Customer Service</h3>
 						<ul class="list-links">
-							<li><a href="#">About Us</a></li> <!-- 쇼핑몰 설명 페이지 -->
+							<li><a href="/aboutUs">About Us</a></li> <!-- 쇼핑몰 설명 페이지 -->
 							<li><a href="#">Inquiry</a></li> <!-- 문의 게시판 페이지 -->
 							<li><a href="#">Shiping Guide</a></li> <!-- 배송 가이드 페이지 -->
 						</ul>

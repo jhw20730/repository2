@@ -170,7 +170,7 @@
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
-						<li><a href="/index">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li><a href="/product/list">Shop</a></li>
 						<li><a href="/product/list?type=productType&keyword=데스크탑">PC</a></li>
 						<li><a href="/product/list?type=productType&keyword=노트북">Laptop</a></li>
