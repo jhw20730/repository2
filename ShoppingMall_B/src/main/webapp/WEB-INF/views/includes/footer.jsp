@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 	<!-- FOOTER -->
 	<footer id="footer" class="section section-grey">
@@ -31,7 +33,12 @@
 						<ul class="list-links">
 							<li><a href="/aboutUs">My Account</a></li> <!-- 회원 정보 조회 -->
 							<li><a href="#">My Cart</a></li> <!--  장바구니 -->
-							<li><a href="#">Login</a></li> <!-- 로그인 -->
+							<sec:authorize access="isAuthenticated()">
+								<li><a href="/customLogout">Logout</a></li>
+							</sec:authorize>
+							<sec:authorize access="isAnonymous()">
+								<li><a href="/customLogin">Login</a></li>
+							</sec:authorize>
 						</ul>
 					</div>
 				</div>

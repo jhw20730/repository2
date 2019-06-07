@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<%@include file="../includes/header.jsp"%>
+<%@include file="includes/header.jsp"%>
 
 <!-- section -->
 <div class="section">
@@ -19,7 +19,7 @@
 			</div>
 			<!-- /section-title -->
 
-			<form role="form" action="/user/join" method="post">
+			<form role="form" action="/join" method="post">
 					<div class="form-group">
 						<label>아이디</label>
 						<input class="form-control" name="id">
@@ -53,6 +53,7 @@
 					<button type="submit" class="btn btn-default">회원가입</button>
 					<button type="reset" class="btn btn-default">RESET</button>
 					<button type="button" class="btn btn-default" onclick="location.href=/product/list">취소</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
 
 		</div>
@@ -65,4 +66,4 @@
 </div>
 <!-- /section -->
 
-<%@include file="../includes/footer.jsp"%>
+<%@include file="includes/footer.jsp"%>

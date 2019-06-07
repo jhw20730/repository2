@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void join(UserVO vo) { //회원가입
-		mapper.userRegister(vo);
+		mapper.join(vo);
 	}
 
 }

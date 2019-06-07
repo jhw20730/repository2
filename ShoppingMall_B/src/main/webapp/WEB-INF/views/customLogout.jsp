@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="/login">로그인</a><br>
-<a href="/register">회원가입</a><br>
-<a href="/product/list">상품 목록 조회</a>
+<h1>logout page</h1>
+<form action="/customLogout" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	<button>로그아웃</button>
+</form>
 </body>
 </html>

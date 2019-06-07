@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <!DOCTYPE html>
 <html>
@@ -109,12 +111,24 @@
 								</div>
 								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
 							</div>
-							<a href="/user/login" class="text-uppercase">Login</a> / <a href="/user/join" class="text-uppercase">Join</a>
+							<sec:authorize access="isAnonymous()">
+									<b>guest님</b><br>
+									<a href="/customLogin" class="text-uppercase">Login</a> / <a href="/join" class="text-uppercase">Join</a>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+									<b><sec:authentication property="principal.username"/>님</b><br>
+									<a href="/customLogout" class="text-uppercase">Logout</a>
+							</sec:authorize>
 							<ul class="custom-menu">
 								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
 								<li><a href="#"><i class="fa fa-heart-o"></i> My Cart</a></li>
-								<li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
-								<li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+								<sec:authorize access="isAuthenticated()">
+									<li><a href="/customLogout"><i class="fa fa-unlock-alt"></i> Logout</a></li>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<li><a href="/customLogin"><i class="fa fa-unlock-alt"></i> Login</a></li>
+								</sec:authorize>
+								<li><a href="/join"><i class="fa fa-user-plus"></i> Create An Account</a></li>
 							</ul>
 						</li>
 						<!-- /Account -->

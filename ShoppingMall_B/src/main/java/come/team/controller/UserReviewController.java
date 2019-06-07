@@ -1,4 +1,4 @@
-package come.team.two;
+package come.team.controller;
 
 import java.util.List;
 
