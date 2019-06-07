@@ -3,15 +3,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page import="java.util.*" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>Access Denied Page</h1>
-<h2>권한이 없습니다.</h2>
+<%@include file="includes/header.jsp"%>
 
-</body>
-</html>
+<!-- section -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- section-title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2 class="title">Access Denied Page</h2>
+				</div>
+			</div>
+			<!-- /section-title -->
+			<h2>권한이 없습니다.</h2>
+			<h4><button onclick="location.href='/'">홈으로</button></h4>
+			
+		</div>
+		<!-- /row -->
+
+	</div>
+	<!-- /container -->
+
+
+</div>
+<!-- /section -->
+
+<%@include file="includes/footer.jsp"%>
+
