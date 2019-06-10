@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +66,7 @@ public class UserProductController {
 	
 	@GetMapping("/view")
 	public void view(String productCode, Model model) {
+			
 		ProductVO productVO = productService.productView(productCode);
 		Criteria criteria = new Criteria(1, 10, productService.priceTotal());
 		List<ReviewVO> reviewList = reviewService.getReviewList(criteria, productCode);
@@ -72,7 +74,7 @@ public class UserProductController {
 		model.addAttribute("board", productVO);
 		model.addAttribute("review", reviewList);
 	}
-	//카드담기
+	//카트담기
 	
 	@GetMapping("/view/addcart")
 	public void addCart() {
@@ -83,7 +85,8 @@ public class UserProductController {
 	@PostMapping("/view/addcart")
 	public void addCart(CartVO cart, HttpSession session) throws Exception {
 	
-		UserVO userId = (UserVO) session.getAttribute("id"); 
+		UserVO userId = (UserVO) session.getAttribute("id");
+		System.out.println(userId);
 		ProductVO productCode = (ProductVO) session.getAttribute("productCode");
 		cart.setId(userId.getId());
 		cart.setProductCode(productCode.getProductCode());

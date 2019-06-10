@@ -22,7 +22,7 @@
 			<form role="form" action="/login" method="post">
 					<div class="form-group">
 						<label>아이디</label>
-						<input class="form-control" name='username'>
+						<input class="form-control" name='username'> <!-- username means id -->
 					</div>
 					
 					<div class="form-group">

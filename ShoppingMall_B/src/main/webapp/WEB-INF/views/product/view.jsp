@@ -3,9 +3,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@include file="../includes/header.jsp"%>
-
 
 <!-- section -->
 <div class="section">
@@ -54,39 +54,47 @@
 						<div class="product-btns">
 							<p>
 								<strong>재고</strong>${board.stock }</p>
-							<button type="button" class="primary-btn add-to-cart" onclick="location.href='view/addcart'">
-								<i class="fa fa-shopping-cart"></i>장바구니 담기
+								개수 : <input type="number" name="amount" id="amount" size="1"><br><br>
+							<button type="button" class="primary-btn add-to-cart" id="addCart">
+								<i class="fa fa-shopping-cart"></i> 장바구니 담기
 							</button>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							
 							<script>
-								$(".primary-btn add-to-cart").click(function() {
-									var productCode = $("#productCode").val();
-									var amount = $(".numBox").val();
-
-									var data = {
+								$("#addCart").on("click", function(e) {
+									e.preventDefault();
+									var productCode = "<c:out value='${board.productCode}'/>";
+									var amount = $("#amount").val();
+									var id = null;
+									
+									<sec:authorize access="isAuthenticated()">
+									id = '<sec:authentication property="principal.username"/>';	
+									</sec:authorize access>
+									
+									var csrfHeaderName ="${_csrf.headerName}"; 
+								    var csrfTokenValue="${_csrf.token}";
+									
+									var cart = {
+										amount : amount,	
 										productCode : productCode,
-										amount : amount,
-										id     : id
+										id : id
 									};
 
 									$.ajax({
-										url : "/product/view/addcart",
+										url : "/cart/add",
 										type : "post",
-										data : data,	
-										success : function(result) {
-											if(result ==1){
-												alert("카트 담기 성공");
-												$(".numBox").val("1");	
-											}else{
-												alert("회원만 가능합니다.");
-												$(".numBox").val("1");
-											}
-											
+										data : cart,	
+										success : function() {
+											alert("카트 담기 성공");
+											window.location.href = '/cart/list';
 										},
 										error : function() {
 											alert("카트 담기 실패");
 										}
 									});
 								});
+							
+								
 							</script>
 							<div class="pull-right">
 								<button class="main-btn icon-btn">

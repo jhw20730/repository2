@@ -1,5 +1,6 @@
 package come.team.controller;
 
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class AdminController {
 	
-	private ProductService service;
+	private ProductService productService;
 	
 	@GetMapping("/index")
 	public void index() {
@@ -29,15 +30,29 @@ public class AdminController {
 	}
 	
 	@GetMapping("/list")
-	public void list(Criteria criteria, Model model) {
-
+	public void list(Criteria criteria, String price, Model model) {
+		int price_total = 0;
+		
+		if(price == null) {
+			price_total = productService.priceTotal();
+		} else {
+			log.info("백분율: " + price);
+			log.info("최대 가격 : " + productService.priceTotal());
+			price_total = (int) (Math.ceil(Integer.parseInt(price)*productService.priceTotal()/100000)*1000+1000);
+		}
+		
+		log.info("설정된 price total: "+price_total);
+		
+		model.addAttribute("pricetotal", productService.priceTotal());
+		
 		criteria.setAmount(10);
+		criteria.setPrice(price_total);
 		
 		log.info("list: " + criteria);
 		
-		model.addAttribute("list", service.findPagingList(criteria));
+		model.addAttribute("list", productService.findPagingList(criteria));
 		
-		int total = service.countAll(criteria);
+		int total = productService.countAll(criteria);
 		
 		model.addAttribute("pageMaker", new PageDTO(criteria, total));
 		
@@ -45,7 +60,7 @@ public class AdminController {
 	
 	@GetMapping("/view")
 	public void view(String productCode, Model model) {
-		model.addAttribute("product", service.productView(productCode));
+		model.addAttribute("product", productService.productView(productCode));
 	}
 	
 
@@ -57,7 +72,7 @@ public class AdminController {
 	
 	@PostMapping("/register") //관리자가 제품 등록하는
 	public String register(ProductVO vo) {
-		service.register(vo);
+		productService.register(vo);
 		
 		log.info("productVO: " + vo);
 		
@@ -66,20 +81,20 @@ public class AdminController {
 	
 	@GetMapping("/update")
 	public void update(String productCode, Model model) {
-		model.addAttribute("board", service.productView(productCode));
+		model.addAttribute("board", productService.productView(productCode));
 	}
 	
 	@GetMapping("/updateCheck")
 	public void list(ProductVO vo, Model model) {
 		
 		log.info(vo);
-		service.update(vo);
+		productService.update(vo);
 	}
 	
 	@GetMapping("/delete")
 	public void delete(String productCode, Model model) {
 		log.info("delete sequence start "+productCode);
-		service.delete(productCode);
+		productService.delete(productCode);
 		log.info("delete sequence ");
 	}
 	

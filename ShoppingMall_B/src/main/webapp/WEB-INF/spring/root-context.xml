@@ -23,6 +23,6 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	<mybatis-spring:scan base-package="come.team.mapper"/>
-	<context:component-scan base-package="come.team.service"/>		
+	<mybatis-spring:scan base-package="come.team.mapper"/> <!-- Mapper 패키지 스캔 설정 -->
+	<context:component-scan base-package="come.team.service"/> <!-- Service 패키지 스캔 설정 -->		
 </beans>

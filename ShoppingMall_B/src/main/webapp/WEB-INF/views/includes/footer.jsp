@@ -52,7 +52,7 @@
 						<h3 class="footer-header">Customer Service</h3>
 						<ul class="list-links">
 							<li><a href="/aboutUs">About Us</a></li> <!-- 쇼핑몰 설명 페이지 -->
-							<li><a href="#">Inquiry</a></li> <!-- 문의 게시판 페이지 -->
+							<li><a href="inquiry/list">Inquiry</a></li> <!-- 문의 게시판 페이지 -->
 							<li><a href="#">Shiping Guide</a></li> <!-- 배송 가이드 페이지 -->
 						</ul>
 					</div>

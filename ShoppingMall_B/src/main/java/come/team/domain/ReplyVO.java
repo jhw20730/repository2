@@ -5,14 +5,13 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class InquiryVO {
+public class ReplyVO {
 	
+	private int replyNo;
 	private int inquiryNo;
 	private String id;
-	private String name;
 	private String title;
 	private String content;
-	private String password;
-	private Date inquiryDate;
-	
+	private Date replyDate;
+
 }

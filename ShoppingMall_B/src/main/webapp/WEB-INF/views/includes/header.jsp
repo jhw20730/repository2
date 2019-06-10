@@ -154,7 +154,7 @@
 									<a href="/customLogin" class="text-uppercase">Login</a> / <a href="/join" class="text-uppercase">Join</a>
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
-									<b><sec:authentication property="principal.username"/>님</b><br>
+									<b><sec:authentication property="principal.username"/>님</b><br> <!-- username means id -->
 									<a href="/customLogout" class="text-uppercase">Logout</a>
 							</sec:authorize>
 							<ul class="custom-menu">
@@ -202,16 +202,45 @@
 							</div>
 						</li>
 						<!-- /Cart -->
-
-						<!-- Mobile nav toggle-->
-						<li class="nav-toggle">
-							<button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
-						</li>
-						<!-- / Mobile nav toggle -->
 					</ul>
 				</div>
 			</div>
 			<!-- header -->
+			<script type="text/javascript" src="../../../resources/js/cart.js"></script>
+			<script tpe="text/javascript">
+				$(document).ready(function() {
+					
+					var id = "hong1";
+					var myCart = $(".shopping-cart-list");
+					
+					showCartList();
+					function showCartList(){
+						cartService.getList({}, function(list){
+							console.log(list);
+							
+							if(list == null || list.length == 0){
+								myCart.html("");
+								return;
+							}
+							
+							var str = "";
+							for(var i = 0, len = list.length || 0; i < len; i++){
+								str += '<div class="product product-widget">';
+								//str += '<div class="product-thumb">';
+								//str += '<img src="" alt="">';
+								//str += '</div>';
+								str += '<div class="product-body">';
+								str += '<h3 class="product-price">' + list[i].price + '<span class="qty">' + list[i].amount + '</span></h3>';
+								str += '<h2 class="product-name"><a href="/product/view?productCode=' + list[i].productCode + '">' + list[i].productName + '</a></h2>';
+								str += '</div>'; //end productBody
+								str += '</div>'; //end product widget
+							}
+							myCart.html(str);
+						}); //end function
+					} //end showCartList
+					
+				}); // end document.ready
+			</script>
 			
 	<!-- NAVIGATION -->
 	<div id="navigation">
