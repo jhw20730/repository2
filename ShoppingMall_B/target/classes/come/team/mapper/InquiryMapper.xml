@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="come.team.mapper.InquiryMapper">
+
+	<select id="getInquiryList" resultType="come.team.domain.InquiryVO">
+		<![CDATA[
+		select INQUIRYNO, ID, NAME, TITLE, CONTENT, PASSWORD, INQUIRYDATE
+		from ( 
+			select /* INDEX_DESC(TBL_INQUIRY PK_INQUIRY) */
+			rownum rn, INQUIRYNO, ID, NAME, TITLE, CONTENT, PASSWORD, INQUIRYDATE
+			from TBL_INQUIRY
+			where
+			rownum <= #{pageNum} * #{amount}
+			)
+			where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getInquiryNum" resultType="int">
+		select count(*) from TBL_INQUIRY
+	</select>
+	
+	<select id="getInquiryView" resultType="come.team.domain.InquiryVO">
+		select INQUIRYNO, ID, NAME, TITLE, CONTENT, PASSWORD, INQUIRYDATE 
+		from TBL_INQUIRY
+		where inquiryNo = #{inquiryNo} 
+	</select>
+	
+	<insert id="registerInquiry"></insert>
+	
+	<delete id="deleteInquiry"></delete>
+
+</mapper>

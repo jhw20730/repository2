@@ -18,7 +18,7 @@
 			</foreach>
 		</trim>
 	</sql>
-
+	
 	<select id="findPagingList"
 		resultType="come.team.domain.ProductVO">
 		<![CDATA[
@@ -36,7 +36,7 @@
 		  <![CDATA[
 		  rownum <= #{pageNum} * #{amount}
 		      )
-		  where rn > (#{pageNum} -1) * #{amount}
+		  where rn > (#{pageNum} -1) * #{amount} AND (price <= #{price})
 		  ]]>
 	</select>
 
@@ -73,5 +73,10 @@
 		STOCK=#{stock}, USABILITY=#{usability}
 		where PRODUCTCODE=#{productCode}
 	</update>
-
+	
+	<select id="total" resultType="int">
+		select MAX(PRICE)
+		from TBL_PRODUCT
+	</select>
+	
 </mapper>

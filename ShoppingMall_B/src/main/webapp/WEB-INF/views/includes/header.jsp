@@ -38,7 +38,36 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+<style>
+#headtbl {
+	width: 364px;
+	height: 40px;
+	margin-left: 400px;
+	margin-top: -40px;
+}
 
+#httr1 {
+	border: 1px solid rgb(169, 169, 169);
+	width: 100px;
+	padding: 0px 18px;
+	font-family: 'Hind', sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #4A4E5A;
+}
+
+#httr2 {
+	border: 1px solid rgb(169, 169, 169);
+	width: 229px;
+	padding: 0px 10px 0px 10px;
+}
+
+#price {
+	display: inline;
+	width: 150px;
+	vertical-align: middle;
+}
+</style>
 </head>
 
 	<!-- jQuery Plugins -->
@@ -71,8 +100,7 @@
 				<div class="pull-right">
 					<ul class="header-top-links">
 						<li><a href="/product/list">Store</a></li>
-						<li><a href="#">Newsletter</a></li>
-						<li><a href="#">FAQ</a></li>
+						<li><a href="/inquiry/list">Inquiry</a></li>
 					</ul>
 				</div>
 			</div>
@@ -86,7 +114,7 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form action="/product/list" method="get">
+						<form action="/product/list" method="get" oninput="x.value=Math.ceil(parseInt(price.value)*${pricetotal == null? 100 : pricetotal}/100000)*1000">
 							<input class="input search-input" type="text" name="keyword" placeholder="Enter your keyword">
 							<select class="input search-categories" name="type">
 								<option value="N">Name</option>
@@ -94,6 +122,16 @@
 								<option value="M">Manufacturer</option>
 								<option value="D">Description</option>
 							</select>
+							
+							<table id="headtbl">
+								<tr>
+									<td id="httr1">Price</td>
+									<td id="httr2">0 <input type="range" id="price"
+										name="price" value="100"> 
+										<output name="x" for="price" style="display:inline;"/>
+									</td>
+							</table>
+							
 							<button class="form"><i class="fa fa-search"></i></button>
 							<input type="hidden" name="pageNum"	value="${pageMaker.cri.pageNum }"> 
 							<input type="hidden" name="amount" value="${pageMaker.cri.amount }"> 

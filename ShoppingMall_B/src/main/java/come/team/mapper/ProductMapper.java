@@ -15,4 +15,6 @@ public interface ProductMapper {
 	void delete(String productCode); //제품 삭제
 	void update(ProductVO vo); //제품 수정
 	
+	int total();
+	
 }

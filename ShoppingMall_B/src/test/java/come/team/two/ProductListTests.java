@@ -1,5 +1,6 @@
 package come.team.two;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,7 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import come.team.domain.Criteria;
+import come.team.domain.InquiryVO;
 import come.team.domain.ReviewVO;
+import come.team.mapper.InquiryMapper;
 import come.team.mapper.ProductMapper;
 import come.team.mapper.ReviewMapper;
 import lombok.Setter;
@@ -26,7 +29,16 @@ public class ProductListTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReviewMapper reviewMapper;
-
+	
+	@Setter(onMethod_ = @Autowired)
+	private InquiryMapper inquiryMapper;
+	
+	@Test
+	public void getInquiryList() {
+		Criteria criteria = new Criteria(1, 10, 0);
+		List<InquiryVO> list = inquiryMapper.getInquiryList(criteria);
+		list.forEach(inq -> log.info(inq));
+	}
 	
 //	@Test
 //	public void findPagingList() { //페이징해서 리스트를 불러 올 수 있는지 테스트
@@ -56,7 +68,7 @@ public class ProductListTests {
 
 	@Test
 	public void getReviewList() {
-		Criteria criteria = new Criteria(2, 15);
+		Criteria criteria = new Criteria(2, 15, 0);
 		
 		List<ReviewVO> list = reviewMapper.getReviewList(criteria, "b12");
 		

@@ -17,15 +17,21 @@ public class Criteria {
 	
 	private String type;
 	private String keyword;
+	private int price;
 
 	public Criteria() {
-		this(1, 10);
+		this(1, 10, 1000000);
 	}
 		
 	
-	public Criteria(int pageNum, int amount) {
+	public Criteria(int pageNum, int amount, int price) {
 		this.pageNum = pageNum;
 		this.amount = amount;
+		if(price == 0) {
+			this.price = 1000000;
+		} else {
+			this.price = price;
+		}
 	}
 	
 	  public String[] getTypeArr() {
