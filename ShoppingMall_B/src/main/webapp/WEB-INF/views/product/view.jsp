@@ -58,26 +58,17 @@
 							<button type="button" class="primary-btn add-to-cart" id="addCart">
 								<i class="fa fa-shopping-cart"></i> 장바구니 담기
 							</button>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							
 							<script>
 								$("#addCart").on("click", function(e) {
 									e.preventDefault();
 									var productCode = "<c:out value='${board.productCode}'/>";
 									var amount = $("#amount").val();
-									var id = null;
-									
-									<sec:authorize access="isAuthenticated()">
-									id = '<sec:authentication property="principal.username"/>';	
-									</sec:authorize access>
-									
-									var csrfHeaderName ="${_csrf.headerName}"; 
-								    var csrfTokenValue="${_csrf.token}";
 									
 									var cart = {
 										amount : amount,	
 										productCode : productCode,
-										id : id
+										/* id : id */
 									};
 
 									$.ajax({

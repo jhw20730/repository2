@@ -14,7 +14,5 @@ public interface ProductService {
 	void register(ProductVO vo); //제품 등록
 	void delete(String productCode); //제품 삭제
 	void update(ProductVO vo); //제품 정보 수정
-	
-	int priceTotal();
 
 }

@@ -114,7 +114,7 @@
 
 					<!-- Search -->
 					<div class="header-search">
-						<form action="/product/list" method="get" oninput="x.value=Math.ceil(parseInt(price.value)*${pricetotal == null? 100 : pricetotal}/100000)*1000">
+						<form action="/product/list" method="get">
 							<input class="input search-input" type="text" name="keyword" placeholder="Enter your keyword">
 							<select class="input search-categories" name="type">
 								<option value="N">Name</option>
@@ -123,14 +123,14 @@
 								<option value="D">Description</option>
 							</select>
 							
-							<table id="headtbl">
+							<!-- <table id="headtbl">
 								<tr>
 									<td id="httr1">Price</td>
 									<td id="httr2">0 <input type="range" id="price"
 										name="price" value="100"> 
 										<output name="x" for="price" style="display:inline;"/>
 									</td>
-							</table>
+							</table> -->
 							
 							<button class="form"><i class="fa fa-search"></i></button>
 							<input type="hidden" name="pageNum"	value="${pageMaker.cri.pageNum }"> 

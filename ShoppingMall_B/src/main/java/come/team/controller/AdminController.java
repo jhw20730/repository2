@@ -30,23 +30,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/list")
-	public void list(Criteria criteria, String price, Model model) {
-		int price_total = 0;
-		
-		if(price == null) {
-			price_total = productService.priceTotal();
-		} else {
-			log.info("백분율: " + price);
-			log.info("최대 가격 : " + productService.priceTotal());
-			price_total = (int) (Math.ceil(Integer.parseInt(price)*productService.priceTotal()/100000)*1000+1000);
-		}
-		
-		log.info("설정된 price total: "+price_total);
-		
-		model.addAttribute("pricetotal", productService.priceTotal());
-		
+	public void list(Criteria criteria, Model model) {	
 		criteria.setAmount(10);
-		criteria.setPrice(price_total);
 		
 		log.info("list: " + criteria);
 		

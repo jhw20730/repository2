@@ -42,7 +42,7 @@ public class UserCartController {
 	public void addCart(CartVO cart, HttpSession session) throws Exception {
 		
 		String id = (String) session.getAttribute("id");
-		System.out.println(id);
+		id = "user00";
 		cart.setId(id);
 
 		cartService.addCart(cart);
@@ -51,10 +51,10 @@ public class UserCartController {
 
 	// 카트 리스트
 	@GetMapping("/list")
-	public void getCartList(HttpSession session, Model model) {
+	public void getCartList(HttpSession session, Model model, Criteria criteria, String price) {
 		
 		String id = (String) session.getAttribute("id");
-		
+		id = "user00";
 		List<CartVO> cartList = cartService.getCartList(id);
 
 		for (int i = 0; i < cartList.size(); i++) {
@@ -90,7 +90,7 @@ public class UserCartController {
 		public ResponseEntity<List<CartVO>> getReviewList(HttpSession session, Model model){
 		
 		String id = (String) session.getAttribute("id");
-		
+		id = "user00";
 
 		List<CartVO> cartList = cartService.getCartList(id);
 

@@ -66,6 +66,7 @@ public class UserController {
 		if(logout != null) {
 			model.addAttribute("logout", "logout!!");
 		}
+	
 	}
 	
 	@GetMapping("/customLogout")

@@ -55,9 +55,4 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	@Override
-	public int priceTotal(){
-		return mapper.total();
-	}
-
 }

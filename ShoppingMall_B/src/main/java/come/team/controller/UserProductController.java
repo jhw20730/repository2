@@ -36,23 +36,9 @@ public class UserProductController {
 	private ReviewService reviewService;
 	
 	@GetMapping("/list")
-	public void list(Criteria criteria, String price, Model model) {
-		int price_total = 0;
-		
-		if(price == null) {
-			price_total = productService.priceTotal();
-		} else {
-			log.info("백분율: " + price);
-			log.info("최대 가격 : " + productService.priceTotal());
-			price_total = (int) (Math.ceil(Integer.parseInt(price)*productService.priceTotal()/100000)*1000+1000);
-		}
-		
-		log.info("설정된 price total: "+price_total);
-		
-		model.addAttribute("pricetotal", productService.priceTotal());
+	public void list(Criteria criteria, Model model) {
 		
 		criteria.setAmount(10);
-		criteria.setPrice(price_total);
 		
 		log.info("list: " + criteria);
 		
@@ -66,27 +52,28 @@ public class UserProductController {
 	
 	@GetMapping("/view")
 	public void view(String productCode, Model model) {
-			
+	
 		ProductVO productVO = productService.productView(productCode);
-		Criteria criteria = new Criteria(1, 10, productService.priceTotal());
+		Criteria criteria = new Criteria(1, 10);
 		List<ReviewVO> reviewList = reviewService.getReviewList(criteria, productCode);
 				
 		model.addAttribute("board", productVO);
 		model.addAttribute("review", reviewList);
 	}
-	//카트담기
 	
+	//카트담기
+	@PreAuthorize("hasRole{'ROLE_MEMBER'}") //로그인한 멤버만 가능하게끔
 	@GetMapping("/view/addcart")
 	public void addCart() {
 		
 	}
 	
 	@ResponseBody
+	@PreAuthorize("hasRole{'ROLE_MEMBER'}") //로그인한 멤버만 가능하게끔
 	@PostMapping("/view/addcart")
 	public void addCart(CartVO cart, HttpSession session) throws Exception {
 	
 		UserVO userId = (UserVO) session.getAttribute("id");
-		System.out.println(userId);
 		ProductVO productCode = (ProductVO) session.getAttribute("productCode");
 		cart.setId(userId.getId());
 		cart.setProductCode(productCode.getProductCode());
